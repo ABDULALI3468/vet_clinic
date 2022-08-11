@@ -28,6 +28,23 @@ ROLLBACK TO SP1 ;
 
 COMMIT;
 
+-- OTHER TRANSACTION.
+
+
+BEGIN;
+-- Delete all animals born after Jan 1st, 2022.
+DELETE FROM animals WHERE date_of_birth > 'January 1, 2022';
+-- Create a savepoint for the transaction.
+SAVEPOINT ANIMAL_DELETED;
+-- Update all animals' weight to be their weight multiplied by -1.
+UPDATE animals SET weight_kg = weight_kg * -1;
+-- Rollback to the savepoint
+ROLLBACK TO SAVEPOINT ANIMAL_DELETED;
+-- Update all animals' weights that are negative to be their weight multiplied by -1.
+UPDATE animals SET weight_kg = weight_kg * -1 WHERE weight_kg < 0;
+-- Commit transaction
+COMMIT;
+
 
 -- AGGREGATIONS AND GROUP BY
 

@@ -26,3 +26,41 @@ ALTER TABLE animals ADD COLUMN owner_id INTEGER;
 ALTER TABLE animals ADD FOREIGN KEY (species_id) REFERENCES species (id);
 
 ALTER TABLE animals ADD FOREIGN KEY (owner_id) REFERENCES owners (id);
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- DAY 4
+-- DAY 4
+-- DAY 4
+-- DAY 4
+-- DAY 4
+-- DAY 4
+
+
+-- MANY TO MANY REALTIONSHIP.
+
+
+CREATE TABLE vets (
+  id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  name VARCHAR(255),
+  age int,
+  date_of_graduation date
+);
+
+CREATE TABLE visits(
+  id SERIAL PRIMARY KEY,
+  animals_id INT,
+  vets_id INT,
+  date_of_visit date NOT NULL,
+  CONSTRAINT fk_animals FOREIGN KEY(animals_id) REFERENCES animals(id) ON UPDATE CASCADE ON DELETE CASCADE,
+  CONSTRAINT fk_vets FOREIGN KEY(vets_id) REFERENCES vets(id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE specializations(
+  species_id INT,
+  vets_id INT,
+  CONSTRAINT fk_species FOREIGN KEY(species_id) REFERENCES species(id) ON UPDATE CASCADE ON DELETE CASCADE,
+  CONSTRAINT fk_vets FOREIGN KEY(vets_id) REFERENCES vets(id) ON UPDATE CASCADE ON DELETE CASCADE,
+  CONSTRAINT fk_species_vets PRIMARY KEY (species_id, vets_id)
+);
+

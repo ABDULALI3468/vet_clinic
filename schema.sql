@@ -64,3 +64,26 @@ CREATE TABLE specializations(
   CONSTRAINT fk_species_vets PRIMARY KEY (species_id, vets_id)
 );
 
+
+--------------------------------------
+
+-- Vet clinic database: database performance audit (MOST RECENT WORK)
+
+ALTER TABLE owners ADD COLUMN email VARCHAR(120);
+
+-- BEFORE OPTIMIZATION
+
+EXPLAIN ANALYZE SELECT COUNT(*) FROM visits where animals_id = 4;
+EXPLAIN ANALYZE SELECT * FROM visits where vets_id = 2;
+EXPLAIN ANALYZE SELECT * FROM owners where email = 'owner_18327@mail.com';
+
+-- AFTER OPTIMIZATION
+
+CREATE INDEX for_animals_id ON visits (animals_id); 
+EXPLAIN ANALYZE SELECT COUNT(*) FROM visits where animals_id = 4;
+
+CREATE INDEX for_vets_id ON visits ( vets_id );
+EXPLAIN ANALYZE SELECT * FROM visits where vets_id = 2;
+
+CREATE INDEX for_email_owners ON owners ( email );
+EXPLAIN ANALYZE SELECT * FROM owners where email = 'owner_18327@mail.com';

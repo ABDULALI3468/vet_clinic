@@ -5,7 +5,8 @@
 
 ## ENTITY RELATIONSHIP DIAGRAM
 
-![image](https://user-images.githubusercontent.com/94223367/185036066-95cbe9d0-4a05-4530-81e6-737a09020fc8.png)
+![image](https://user-images.githubusercontent.com/94223367/185036302-20c56a41-3687-4c4e-ab78-488b1a1898eb.png)
+
 
 ## Getting Started
 

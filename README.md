@@ -3,6 +3,9 @@
 > This template should be used for database related projects at Microverse.
 > Generate your own repository, update this README and edit all files content while working on projects. You should not be adding any new files unless asked otherwise.
 
+## ENTITY RELATIONSHIP DIAGRAM
+
+![image](https://user-images.githubusercontent.com/94223367/185036066-95cbe9d0-4a05-4530-81e6-737a09020fc8.png)
 
 ## Getting Started
 
